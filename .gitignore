@@ -1,0 +1,9 @@
+$ cat .gitignore
+
+# Can ignore specific files
+.DS_Store
+.idea
+.git
+
+# Use wildcards as well
+docs/customer/assets/cache
