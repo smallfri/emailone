@@ -246,7 +246,7 @@ class ZapierController extends Controller
             $data['records'][] = $record;
         }
 
-        Logger::addProgress('(Zapier) actionReturn Subscribers '.print_r($data['records'],true),'(Zapier) ActionReturn Subscribers');
+        Logger::addProgress('(Zapier) actionReturn Subscribers USER ID '.$this->user_id.' '.print_r($data['records'],true),'(Zapier) ActionReturn Subscribers');
 
         return $this->renderJson(array(
             'subscribers' => $data['records']

@@ -15,7 +15,7 @@ class CampaignTrackingSubstribersWithMostOpensWidget extends CWidget
 {
     public $campaign;
     
-    public $showDetailLinks = true;
+    public $showDetailLinks = false;
     
     public function run() 
     {

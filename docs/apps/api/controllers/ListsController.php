@@ -117,7 +117,7 @@ class ListsController extends Controller
 
         return $this->renderJson(array(
             'status'    => 'success',
-            'data'      => 'fucker'
+            'data'      => $data['records']
         ), 200);
     }
     
