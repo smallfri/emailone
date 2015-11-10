@@ -94,7 +94,9 @@ return array(
                 
                 array('api_keys/<action>', 'pattern' => 'api-keys/<action>/*'),
                 array('api_keys/<action>', 'pattern' => 'api-keys/<action>'),
-                
+
+                array('referrals/index', 'pattern' => 'referrals/index'),
+
                 array('dashboard/delete_log', 'pattern' => 'dashboard/delete-log/id/<id:(\d+)>'),
                 array('dashboard/delete_logs', 'pattern' => 'dashboard/delete-logs'),
                 

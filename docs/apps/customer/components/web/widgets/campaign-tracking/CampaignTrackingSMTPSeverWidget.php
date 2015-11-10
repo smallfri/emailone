@@ -25,7 +25,7 @@ class CampaignTrackingSMTPSeverWidget extends CWidget
         }
 
         // remove for production!!!!
-        $campaign->customer_id = 1;
+//        $campaign->customer_id = 1;
         $data = Yii::app()->db->createCommand()
             ->select('count(*) AS count, c.name')
             ->from('mw_campaign_track_open o')

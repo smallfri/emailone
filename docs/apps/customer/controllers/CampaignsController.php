@@ -286,7 +286,7 @@ class CampaignsController extends Controller
         if (!$campaign->editable) {
             $this->redirect(array('campaigns/overview', 'campaign_uid' => $campaign->campaign_uid));
         }
-        
+
         $campaign->scenario = 'step-setup';
         $default = $campaign->list->default;
         $sameFields = array('from_name', 'from_email', 'subject', 'reply_to');
@@ -428,6 +428,17 @@ class CampaignsController extends Controller
                         )));
                     }
                 }
+
+                //update send_referral_link option
+                if(isset($_POST['CampaignOption']['send_referral_url']))
+                {
+                    $command = Yii::app()->db->createCommand();
+
+                    $command->update('mw_campaign_option', array(
+                        'send_referral_url'=>$_POST['CampaignOption']['send_referral_url'],
+                    ), 'campaign_id=:id', array(':id'=>$campaign->campaign_id));
+                }
+
                 // whether must validate sending domain - end
                 
                 $notify->addSuccess(Yii::t('app', 'Your form has been successfully saved!'));

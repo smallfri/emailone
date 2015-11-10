@@ -349,6 +349,7 @@ CREATE TABLE IF NOT EXISTS `campaign_option` (
   `autoresponder_open_campaign_id` INT(11) NULL,
   `autoresponder_include_imported` enum('yes','no') NOT NULL DEFAULT 'no',
   `email_stats` varchar(255) NOT NULL,
+  `send_referral_url` INT(11) NULL,
   `regular_open_unopen_action` char(10) NULL,
   `regular_open_unopen_campaign_id` int(11) NULL,
   `cronjob` VARCHAR(255) NULL,

@@ -141,8 +141,27 @@ if ($viewCollection->renderContent) {
                             <div class="form-group col-lg-2">
                                 <?php echo $form->labelEx($campaign->option, 'email_stats');?>
                                 <?php echo $form->textField($campaign->option, 'email_stats', $campaign->option->getHtmlOptions('email_stats')); ?>
-                                <?php echo $form->error($campaign->option, 'email_stats');?>
-                            </div> 
+                                <?php echo $form->error($campaign->option,'email_stats'); ?>
+                            </div>
+                                <?php
+                                $send_referral_url = null;
+                                $value = 0;
+                                if(isset($campaign->option->send_referral_url))
+                                {
+                                    $send_referral_url = "checked";
+                                    $value = 1;
+                                }
+
+                                ?>
+                                <div class="form-group col-lg-2">
+                                    <?php echo $form->labelEx($campaign->option,'send_referral_url'); ?>
+                                    <select data-title="Send Referral Link" data-container="body" data-toggle="popover" data-content="Whether to send referral link" class="form-control has-help-text" data-placement="top" name="CampaignOption[send_referral_url]" id="CampaignOption_send_referral_url" data-original-title="" title="">
+                                    <option value="1" selected="selected">Yes</option>
+                                    <option value="0" >No</option>
+                                    </select>
+                                    <?php echo $form->error($campaign->option,'send_referral_url'); ?>
+                                </div>
+
                             <?php } ?>
                             <div class="clearfix"><!-- --></div>   
                         </div>
