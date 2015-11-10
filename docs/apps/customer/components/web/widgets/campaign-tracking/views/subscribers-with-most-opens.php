@@ -38,9 +38,16 @@
         <div class="panel-footer">
             <?php if ($this->showDetailLinks) { ?>
             <div class="pull-right">
-                <a href="<?php echo $this->controller->createUrl('campaign_reports/open_by_subscriber', array('campaign_uid' => $campaign->campaign_uid, 'subscriber_id'=>''));?>" class="btn btn-primary btn-xs"><?php echo Yii::t('campaign_reports', 'View details');?></a>
+                <a href="<?php echo $this->controller->createUrl('campaign_reports/open_by_subscriber',array(
+                    'campaign_uid' => $campaign->campaign_uid,
+                    'subscriber_id' => ''
+                )); ?>" class="btn btn-primary btn-xs"><?php echo Yii::t('campaign_reports','View details'); ?></a>
             </div>
-            <?php } ?>
+            <?php }
+            else
+            {
+                echo '<div style="height:23px;">&nbsp;</div>';
+            } ?>
             <div class="clearfix"><!-- --></div>
         </div>
     </div>

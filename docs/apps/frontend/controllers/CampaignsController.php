@@ -147,6 +147,9 @@ class CampaignsController extends Controller
      */
     public function actionTrack_url($campaign_uid, $subscriber_uid, $hash)
     {
+        Logger::addProgress('(Frontend/Campaigns) getting ready to send header','(Frontend/Campaigns) getting ready to send header');
+
+
         header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
         header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
         header("Cache-Control: no-store, no-cache, must-revalidate");
@@ -157,11 +160,16 @@ class CampaignsController extends Controller
         $criteria->compare('campaign_uid', $campaign_uid);
         $criteria->addNotInCondition('status', array(Campaign::STATUS_PENDING_DELETE));
         $campaign = Campaign::model()->find($criteria);
-        
+
+        Logger::addProgress('(Frontend/Campaigns) Campaign '.print_r($campaign,true),'(Frontend/Campaigns) Campaign');
+
         if (empty($campaign)) {
             Yii::app()->hooks->doAction('frontend_campaigns_track_url_item_not_found', array(
                 'step' => 'campaign'
             ));
+
+            Logger::addWarning('(Frontend/Campaigns) The requested page does not exist '.print_r($campaign,true),'(Frontend/Campaigns) The requested page does not exist');
+
             throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
         }
 
@@ -222,12 +230,17 @@ class CampaignsController extends Controller
         }
 
         $destination = str_replace('&amp;', '&', $url->destination);
+
+        Logger::addProgress('(Frontend/Campaigns) Destination '.print_r($destination,true),'(Frontend/Campaigns) Destination');
+
         if (preg_match('/\[(.*)?\]/', $destination)) {
             list(,,$destination) = CampaignHelper::parseContent($destination, $campaign, $subscriber, false);
         }
         
-        Yii::app()->hooks->doAction('frontend_campaigns_after_track_url_before_redirect', $this, $campaign, $subscriber, $url, $destination); 
-        
+        Yii::app()->hooks->doAction('frontend_campaigns_after_track_url_before_redirect', $this, $campaign, $subscriber, $url, $destination);
+
+        Logger::addProgress('(Frontend/Campaigns) Redirecting to '.print_r($destination,true),'(Frontend/Campaigns) Redirecting...');
+
         $this->redirect($destination, true, 301);
     }
     

@@ -390,6 +390,14 @@ if ($viewCollection->renderContent) { ?>
 
             ));
 
+
+
+            $this->widget('customer.components.web.widgets.campaign-tracking.CampaignTrackingSMTPSeverWidget',array(
+
+                'campaign' => $campaign
+
+            ));
+
             ?>
 
             <div class="clearfix"><!-- --></div>
