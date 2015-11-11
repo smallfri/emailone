@@ -294,6 +294,7 @@ class CampaignSenderBehavior extends CBehavior
                 }
 
                 $emailParams = $this->prepareEmail($subscriber);
+
                 if (empty($emailParams) || !is_array($emailParams)) {
                     $this->logDelivery($subscriber, Yii::t('campaigns', 'Unable to prepare the email content!'), CampaignDeliveryLog::STATUS_ERROR);
                     continue;
@@ -633,7 +634,7 @@ class CampaignSenderBehavior extends CBehavior
     protected function prepareEmail($subscriber)
     {
         $campaign = $this->getOwner();
-        
+
         // how come ?
         if (empty($campaign->template)) {
             return false;
@@ -646,12 +647,20 @@ class CampaignSenderBehavior extends CBehavior
         $emailFooter    = null;
         $onlyPlainText  = !empty($campaign->template->only_plain_text) && $campaign->template->only_plain_text === CampaignTemplate::TEXT_YES;
         $emailAddress   = $subscriber->email;
-        
-        if (!$onlyPlainText) {
-            if (($emailFooter = $customer->getGroupOption('campaigns.email_footer')) && strlen(trim($emailFooter)) > 5) {
-                $emailContent = CampaignHelper::injectEmailFooter($emailContent, $emailFooter, $campaign);
+
+        if(!$onlyPlainText)
+        {
+
+            if(!empty($campaign->option)&&$campaign->option->send_referral_url==1)
+            {
+                $emailContent = CampaignHelper::injectReferralLink($emailContent,$campaign->customer_id);
             }
-            
+
+            if(($emailFooter = $customer->getGroupOption('campaigns.email_footer'))&&strlen(trim($emailFooter))>5)
+            {
+                $emailContent = CampaignHelper::injectEmailFooter($emailContent,$emailFooter,$campaign);
+            }
+
             if (!empty($campaign->option) && !empty($campaign->option->embed_images) && $campaign->option->embed_images == CampaignOption::TEXT_YES) {
                 list($emailContent, $embedImages) = CampaignHelper::embedContentImages($emailContent, $campaign);
             }

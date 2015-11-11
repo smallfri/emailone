@@ -27,6 +27,7 @@
  * @property string $autoresponder_include_imported
  * @property string $autoresponder_open_campaign_id;
  * @property string $email_stats
+ * @property integer $send_referral_url
  * @property string $regular_open_unopen_action
  * @property integer $regular_open_unopen_campaign_id
  * @property string $cronjob
@@ -72,7 +73,8 @@ class CampaignOption extends ActiveRecord
 			array('url_tracking, json_feed, xml_feed, embed_images, plain_text_email', 'length', 'max' => 3),
             array('url_tracking, json_feed, xml_feed, embed_images, plain_text_email', 'in', 'range' => array_keys($this->getYesNoOptions())),
             array('email_stats', 'length', 'max' => 255),
-            
+            array('send_referral_url', 'safe'),
+
             array('autoresponder_event, autoresponder_time_unit, autoresponder_time_value, autoresponder_include_imported', 'required', 'on' => 'step-confirm-ar'),
             array('autoresponder_event', 'in', 'range' => array_keys($this->getAutoresponderEvents())),
             array('autoresponder_time_unit', 'in', 'range' => array_keys($this->getAutoresponderTimeUnits())),
@@ -118,7 +120,8 @@ class CampaignOption extends ActiveRecord
             'embed_images'       => Yii::t('campaigns', 'Embed images'),
             'plain_text_email'   => Yii::t('campaigns', 'Plain text email'),
             'email_stats'        => Yii::t('campaigns', 'Email stats'),
-            
+            'send_referral_url'        => Yii::t('campaigns', 'Send Referral Url'),
+
             'autoresponder_event'            => Yii::t('campaigns', 'Autoresponder event'),
             'autoresponder_time_unit'        => Yii::t('campaigns', 'Autoresponder time unit'),
             'autoresponder_time_value'       => Yii::t('campaigns', 'Autoresponder time value'),
@@ -168,7 +171,8 @@ class CampaignOption extends ActiveRecord
             'embed_images'      => Yii::t('campaigns', 'Whether to embed images in the template instead of loading them remotely'),
             'plain_text_email'  => Yii::t('campaigns', 'Whether to generate the plain text version of the campaign email based on your html email version'),
             'email_stats'       => Yii::t('campaigns', 'Where to send the campaign stats when it finish sending, separate multiple email addresses by a comma. Leave empty to not send the stats'),
-            
+            'send_referral_url'       => Yii::t('campaigns', 'Send Referral URL'),
+
             'autoresponder_event'            => Yii::t('campaigns', 'The event timing that will trigger this autoresponder'),
             'autoresponder_time_unit'        => Yii::t('campaigns', 'The time unit for this autoresponder'),
             'autoresponder_time_value'       => Yii::t('campaigns', 'Based on the time unit, how much to wait until this autoresponder gets sent. 0 means it will be sent immediatly after event'),

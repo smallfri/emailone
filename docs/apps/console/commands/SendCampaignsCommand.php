@@ -103,7 +103,7 @@ class SendCampaignsCommand extends CConsoleCommand
         if ($this->verbose) {
             echo "[".date("Y-m-d H:i:s")."] Starting the send-campaigns command...\n";
         }
-        
+
         $options  = Yii::app()->options;
         $statuses = array(Campaign::STATUS_SENDING, Campaign::STATUS_PENDING_SENDING);
         $types    = array(Campaign::TYPE_REGULAR, Campaign::TYPE_AUTORESPONDER);

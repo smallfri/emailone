@@ -685,6 +685,25 @@ class CampaignHelper
         }
         return $tagFilter;
     }
+
+    public static function injectReferralLink($emailContent,$customer_id)
+    {
+
+        $referral_url = Yii::app()->db->createCommand()
+            ->select('jvz_referral_url')
+            ->from('mw_customer_referral_url')
+            ->where('customer_id=:id',array(':id' => $customer_id))
+            ->queryRow();
+
+        if(!empty($referral_url))
+        {
+            $referral_footer = '<br>'.$referral_url['jvz_referral_url'].'<br>';
+            return str_replace('</body>',$referral_footer."\n".'</body>',$emailContent);
+
+        }
+        return $emailContent;
+
+    }
     
     public static function injectEmailFooter($emailContent, $emailFooter, Campaign $campaign)
     {
