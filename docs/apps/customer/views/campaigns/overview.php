@@ -392,11 +392,11 @@ if ($viewCollection->renderContent) { ?>
 
 
 
-            $this->widget('customer.components.web.widgets.campaign-tracking.CampaignTrackingSMTPSeverWidget',array(
-
-                'campaign' => $campaign
-
-            ));
+//            $this->widget('customer.components.web.widgets.campaign-tracking.CampaignTrackingSMTPSeverWidget',array(
+//
+//                'campaign' => $campaign
+//
+//            ));
 
             ?>
 

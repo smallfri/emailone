@@ -117,11 +117,11 @@ if ($viewCollection->renderContent) {
                                 <?php echo $form->dropDownList($campaign->option, 'url_tracking', $campaign->option->getYesNoOptionsArray(), $campaign->option->getHtmlOptions('url_tracking')); ?>
                                 <?php echo $form->error($campaign->option, 'url_tracking');?>
                             </div>
-                            <div class="form-group col-lg-2">
-                                <?php echo $form->labelEx($campaign->option, 'json_feed');?>
-                                <?php echo $form->dropDownList($campaign->option, 'json_feed', $campaign->option->getYesNoOptionsArray(), $campaign->option->getHtmlOptions('json_feed')); ?>
-                                <?php echo $form->error($campaign->option, 'json_feed');?>
-                            </div>
+<!--                            <div class="form-group col-lg-2">-->
+<!--                                --><?php //echo $form->labelEx($campaign->option, 'json_feed');?>
+<!--                                --><?php //echo $form->dropDownList($campaign->option, 'json_feed', $campaign->option->getYesNoOptionsArray(), $campaign->option->getHtmlOptions('json_feed')); ?>
+<!--                                --><?php //echo $form->error($campaign->option, 'json_feed');?>
+<!--                            </div>-->
                             <div class="form-group col-lg-2">
                                 <?php echo $form->labelEx($campaign->option, 'xml_feed');?>
                                 <?php echo $form->dropDownList($campaign->option, 'xml_feed', $campaign->option->getYesNoOptionsArray(), $campaign->option->getHtmlOptions('xml_feed')); ?>
@@ -156,8 +156,8 @@ if ($viewCollection->renderContent) {
                                 <div class="form-group col-lg-2">
                                     <?php echo $form->labelEx($campaign->option,'send_referral_url'); ?>
                                     <select data-title="Send Referral Link" data-container="body" data-toggle="popover" data-content="Whether to send referral link" class="form-control has-help-text" data-placement="top" name="CampaignOption[send_referral_url]" id="CampaignOption_send_referral_url" data-original-title="" title="">
-                                    <option value="1" selected="selected">Yes</option>
-                                    <option value="0" >No</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected="selected" >No</option>
                                     </select>
                                     <?php echo $form->error($campaign->option,'send_referral_url'); ?>
                                 </div>

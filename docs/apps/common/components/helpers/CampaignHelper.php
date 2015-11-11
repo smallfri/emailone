@@ -697,8 +697,8 @@ class CampaignHelper
 
         if(!empty($referral_url))
         {
-            $referral_footer = '<br>'.$referral_url['jvz_referral_url'].'<br>';
-            return str_replace('</body>',$referral_footer."\n".'</body>',$emailContent);
+            $referral_footer = $referral_url['jvz_referral_url'];
+            return str_replace('</body>','<br><a href="'.$referral_footer.'">EmailONE: Enjoy this level of freedom and security.</a><br></body>',$emailContent);
 
         }
         return $emailContent;

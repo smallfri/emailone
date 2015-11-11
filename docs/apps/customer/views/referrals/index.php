@@ -36,16 +36,6 @@ if($viewCollection->renderContent)
                     <span class="glyphicon glyphicon-star"></span> <?php echo $pageHeading; ?>
                 </h3>
             </div>
-            <div class="pull-right">
-                <?php echo CHtml::link(Yii::t('app','Generate new'),array('api_keys/generate'),array(
-                    'class' => 'btn btn-primary btn-xs',
-                    'title' => Yii::t('api_keys','Generate new key')
-                )); ?>
-                <?php echo CHtml::link(Yii::t('app','Refresh'),array('api_keys/index'),array(
-                    'class' => 'btn btn-primary btn-xs',
-                    'title' => Yii::t('app','Refresh')
-                )); ?>
-            </div>
             <div class="clearfix"><!-- --></div>
         </div>
         <div class="box-body">
